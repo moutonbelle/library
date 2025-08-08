@@ -28,6 +28,7 @@ myLibrary.forEach((book) => displayBook(book));
 function displayBook (book) {
     let bookCard = document.createElement("div");
     bookCard.classList.add("book");
+    bookCard.dataset.id = book.id;
 
     Object.keys(book).forEach(property => {
         let newProperty = document.createElement("p");
@@ -48,6 +49,7 @@ function displayBook (book) {
     let deleteButton = document.createElement("button");
     deleteButton.classList.add("destructive");
     deleteButton.textContent = "Remove";
+    deleteButton.addEventListener("click",e => deleteBook(book.id));
     bookCard.append(deleteButton);
 
     libraryDisplay.appendChild(bookCard);
@@ -59,6 +61,10 @@ function resetForm () {
     document.querySelector("input#pages").value = "";
     document.querySelector("input#true").checked = false;
     document.querySelector("input#false").checked = false;
+}
+
+function deleteBook (id) {
+    myLibrary.splice(myLibrary.findIndex(book => book.id === id), 1);
 }
 
 document.querySelector("button#add-book").addEventListener("click", () => {
