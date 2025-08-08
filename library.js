@@ -44,3 +44,5 @@ myLibrary.forEach((book) => {
 
     libraryDisplay.appendChild(bookCard);
 });
+
+console.log(Book.prototype);
