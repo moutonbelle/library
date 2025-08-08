@@ -45,4 +45,7 @@ myLibrary.forEach((book) => {
     libraryDisplay.appendChild(bookCard);
 });
 
-console.log(Book.prototype);
+document.querySelector("button#add-book").addEventListener("click", () => {
+    if (document.querySelector("form").style.display == "none") document.querySelector("form").style.display = "flex";
+    else document.querySelector("form").style.display = "none";
+});
