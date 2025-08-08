@@ -16,13 +16,16 @@ const libraryDisplay = document.querySelector("#library");
 function addBookToLibrary (title, author, pages, read) {
     let newBook = new Book (title, author, pages, read);
     myLibrary.push(newBook);
+    return newBook;
 }
 
 addBookToLibrary("The Lord of the Rings", "J.R.R. Tolkien", 1254, true);
 addBookToLibrary("Harry Potter", "J.K. Rowling", 4562, true);
 addBookToLibrary("The Wandering Inn", "Pirateaba", 10572, false);
 
-myLibrary.forEach((book) => {
+myLibrary.forEach((book) => displayBook(book));
+
+function displayBook (book) {
     let bookCard = document.createElement("div");
     bookCard.classList.add("book");
 
@@ -43,7 +46,7 @@ myLibrary.forEach((book) => {
     });
 
     libraryDisplay.appendChild(bookCard);
-});
+}
 
 document.querySelector("button#add-book").addEventListener("click", () => {
     if (document.querySelector("form").style.display == "none") document.querySelector("form").style.display = "flex";
@@ -56,7 +59,7 @@ document.querySelector("button#submit").addEventListener("click", () => {
     let pages = document.querySelector("input#pages").value;
     let read = document.querySelector("input#true").checked ? true : false;
 
-    console.log(title, author, pages, read);
+    displayBook(addBookToLibrary(title, author, pages, read));
 })
 
 document.querySelector("form").addEventListener("submit", e => e.preventDefault());
