@@ -48,6 +48,14 @@ function displayBook (book) {
     libraryDisplay.appendChild(bookCard);
 }
 
+function resetForm () {
+    document.querySelector("input#title").value = "";
+    document.querySelector("input#author").value = "";
+    document.querySelector("input#pages").value = "";
+    document.querySelector("input#true").checked = false;
+    document.querySelector("input#false").checked = false;
+}
+
 document.querySelector("button#add-book").addEventListener("click", () => {
     if (document.querySelector("form").style.display == "none") document.querySelector("form").style.display = "flex";
     else document.querySelector("form").style.display = "none";
@@ -60,6 +68,7 @@ document.querySelector("button#submit").addEventListener("click", () => {
     let read = document.querySelector("input#true").checked ? true : false;
 
     displayBook(addBookToLibrary(title, author, pages, read));
+    resetForm();
 })
 
 document.querySelector("form").addEventListener("submit", e => e.preventDefault());
