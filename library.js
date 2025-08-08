@@ -65,6 +65,7 @@ function resetForm () {
 
 function deleteBook (id) {
     myLibrary.splice(myLibrary.findIndex(book => book.id === id), 1);
+    document.querySelector(`[data-id="${id}"]`).remove();
 }
 
 document.querySelector("button#add-book").addEventListener("click", () => {
