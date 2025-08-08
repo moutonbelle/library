@@ -49,3 +49,14 @@ document.querySelector("button#add-book").addEventListener("click", () => {
     if (document.querySelector("form").style.display == "none") document.querySelector("form").style.display = "flex";
     else document.querySelector("form").style.display = "none";
 });
+
+document.querySelector("button#submit").addEventListener("click", () => {
+    let title = document.querySelector("input#title").value;
+    let author = document.querySelector("input#author").value;
+    let pages = document.querySelector("input#pages").value;
+    let read = document.querySelector("input#true").checked ? true : false;
+
+    console.log(title, author, pages, read);
+})
+
+document.querySelector("form").addEventListener("submit", e => e.preventDefault());
