@@ -10,6 +10,8 @@ Book.prototype.info = function () {
     return `${this.title} by ${this.author}, ${this.pages}, ${this.read ? "read." : "not yet read."}`;
 };
 
+Book.prototype.toggleRead = function () {this.read = !this.read;}
+
 const myLibrary = [];
 const libraryDisplay = document.querySelector("#library");
 
@@ -42,9 +44,19 @@ function displayBook (book) {
         newPropertyValue.classList.add("book-property-value");
         newPropertyValue.textContent = " "+ book[property];
 
+        if (property === "read") newPropertyValue.classList.add("read");
+
         newProperty.append(newPropertyName, newPropertyValue);
         bookCard.append(newProperty);
     });
+
+    let toggleReadButton = document.createElement("button");
+    toggleReadButton.textContent = book.read ? "Mark as unread" : "Mark as read";
+    toggleReadButton.addEventListener("click", () => {
+        book.toggleRead();
+        document.querySelector(`[data-id="${book.id}"] .read`).textContent = document.querySelector(`[data-id="${book.id}"] .read`).textContent === " true" ? " false" : " true";
+    })
+    bookCard.append(toggleReadButton);
 
     let deleteButton = document.createElement("button");
     deleteButton.classList.add("destructive");
