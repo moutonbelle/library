@@ -15,6 +15,12 @@ button {
     border-radius: 0.375rem;
 }
 
+button.destructive {
+    background-color: #fecaca;
+    margin-top: auto;
+    margin-left: auto;
+}
+
 form {
     margin-top: 1rem;
     border-radius: 5px;
@@ -58,6 +64,9 @@ input[type="text"] {
     background-color: blanchedalmond;
     padding: 1rem;
     border-radius: 5px;
+
+    display: flex;
+    flex-direction: column;
 }
 
 .book-property-name {

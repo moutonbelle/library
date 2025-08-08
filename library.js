@@ -45,6 +45,11 @@ function displayBook (book) {
         bookCard.append(newProperty);
     });
 
+    let deleteButton = document.createElement("button");
+    deleteButton.classList.add("destructive");
+    deleteButton.textContent = "Remove";
+    bookCard.append(deleteButton);
+
     libraryDisplay.appendChild(bookCard);
 }
 
