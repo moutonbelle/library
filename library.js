@@ -1,4 +1,4 @@
-function Book (title, author, pages, read) {
+function Book(title, author, pages, read) {
     this.id = crypto.randomUUID();
     this.title = title;
     this.author = author;
@@ -10,13 +10,13 @@ Book.prototype.info = function () {
     return `${this.title} by ${this.author}, ${this.pages}, ${this.read ? "read." : "not yet read."}`;
 };
 
-Book.prototype.toggleRead = function () {this.read = !this.read;}
+Book.prototype.toggleRead = function () { this.read = !this.read; }
 
 const myLibrary = [];
 const libraryDisplay = document.querySelector("#library");
 
-function addBookToLibrary (title, author, pages, read) {
-    let newBook = new Book (title, author, pages, read);
+function addBookToLibrary(title, author, pages, read) {
+    let newBook = new Book(title, author, pages, read);
     myLibrary.push(newBook);
     return newBook;
 }
@@ -27,7 +27,7 @@ addBookToLibrary("The Wandering Inn", "Pirateaba", 10572, false);
 
 myLibrary.forEach((book) => displayBook(book));
 
-function displayBook (book) {
+function displayBook(book) {
     let bookCard = document.createElement("div");
     bookCard.classList.add("book");
     bookCard.dataset.id = book.id;
@@ -42,7 +42,7 @@ function displayBook (book) {
 
         let newPropertyValue = document.createElement("span");
         newPropertyValue.classList.add("book-property-value");
-        newPropertyValue.textContent = " "+ book[property];
+        newPropertyValue.textContent = " " + book[property];
 
         if (property === "read") newPropertyValue.classList.add("read");
 
@@ -55,19 +55,20 @@ function displayBook (book) {
     toggleReadButton.addEventListener("click", () => {
         book.toggleRead();
         document.querySelector(`[data-id="${book.id}"] .read`).textContent = document.querySelector(`[data-id="${book.id}"] .read`).textContent === " true" ? " false" : " true";
+        toggleReadButton.textContent = book.read ? "Mark as unread" : "Mark as read";
     })
     bookCard.append(toggleReadButton);
 
     let deleteButton = document.createElement("button");
     deleteButton.classList.add("destructive");
     deleteButton.textContent = "Remove";
-    deleteButton.addEventListener("click",e => deleteBook(book.id));
+    deleteButton.addEventListener("click", e => deleteBook(book.id));
     bookCard.append(deleteButton);
 
     libraryDisplay.appendChild(bookCard);
 }
 
-function resetForm () {
+function resetForm() {
     document.querySelector("input#title").value = "";
     document.querySelector("input#author").value = "";
     document.querySelector("input#pages").value = "";
@@ -75,7 +76,7 @@ function resetForm () {
     document.querySelector("input#false").checked = false;
 }
 
-function deleteBook (id) {
+function deleteBook(id) {
     myLibrary.splice(myLibrary.findIndex(book => book.id === id), 1);
     document.querySelector(`[data-id="${id}"]`).remove();
 }
